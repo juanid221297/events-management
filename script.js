@@ -28,3 +28,44 @@ document.getElementById('eventForm').addEventListener('submit', function (e) {
         e.preventDefault();
     }
 });
+
+
+// script.js
+
+const cityLocations = {
+    "Karachi": ["Clifton", "Gulshan", "Defence", "Saddar"],
+    "Lahore": ["Gulberg", "Johar Town", "DHA", "Model Town"],
+    "Islamabad": ["F-8", "F-10", "Blue Area", "G-11"]
+    // Add more cities and locations as needed
+};
+
+document.getElementById('city').addEventListener('change', function () {
+    const selectedCity = this.value;
+    const locationDropdown = document.getElementById('location');
+    locationDropdown.innerHTML = '<option value="">Select Location</option>';
+    if (selectedCity !== '') {
+        const locations = cityLocations[selectedCity];
+        locations.forEach(location => {
+            const option = document.createElement('option');
+            option.value = location;
+            option.textContent = location;
+            locationDropdown.appendChild(option);
+        });
+        locationDropdown.disabled = false;
+    } else {
+        locationDropdown.disabled = true;
+    }
+});
+
+
+
+// JavaScript
+document.getElementById('userType').addEventListener('change', function () {
+    const selectedUserType = this.value;
+    const paymentMessage = document.getElementById('paymentMessage');
+    if (selectedUserType === 'featured') {
+        paymentMessage.style.display = 'block';
+    } else {
+        paymentMessage.style.display = 'none';
+    }
+});
